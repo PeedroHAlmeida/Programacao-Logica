@@ -19,3 +19,19 @@ avoh(Neto, AvoP) :- % dado o neto é encontrado seu pai e em seguida a mae do pa
     pai(Pai, Neto), mae(AvoP, Pai).
 avoh(Neto, AvoM) :- % dado o neto é encontrado sua mae e em seguida a mae da mae (a avó por parte de mae)
     mae(Mae, Neto), mae(AvoM, Mae).
+
+% verifica de a variavel X tem filhos
+temFilho(X) :-
+    pai(X,_).
+temFilho(X) :-
+    mae(X,_).
+
+% mostra todos os atecessores de uma pessoas
+antecessor(X,Y) :-
+    pai(X,Y).
+antecessor(X,Y) :-
+    mae(X,Y).
+antecessor(X,Y) :-
+    pai(X,Z), antecessor(Z,Y).
+antecessor(X,Y) :-
+    mae(X,Z), antecessor(Z,Y).
